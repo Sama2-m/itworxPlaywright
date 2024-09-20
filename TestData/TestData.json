@@ -1,0 +1,14 @@
+{
+    "AddCustomer": {
+        "firstName": "Samaa",
+        "lastName": "Mostafa",
+        "postCode": "090909"
+    },
+    "SelectCustomer": {
+        "customerName": "Samaa Mostafa",
+        "currency": "Dollar"
+    },
+    "SearchCustomer": {
+        "name": "Samaa"
+    }
+}
