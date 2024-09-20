@@ -15,7 +15,13 @@ exports.HelloWorldPage = class HelloWorld {
         await this.diff2Btn.click();
     }
     async takeBaseScreenShot() {
-        const baselineImage = path.join(__dirname, 'baseline.png');
+        const screenshotFolder = path.join(__dirname, 'Screenshot-VE');
+        // Check if Screenshot-VE folder exists, if not, create it
+        if (!fs.existsSync(screenshotFolder)) {
+            fs.mkdirSync(screenshotFolder);
+        }
+        // Path to the baseline image
+        const baselineImage = path.join(screenshotFolder, 'baseline.png');
         if (!fs.existsSync(baselineImage)) {
             await this.page.screenshot({ path: baselineImage });
             console.log("Baseline screenshot taken.");
@@ -25,7 +31,7 @@ exports.HelloWorldPage = class HelloWorld {
 
 
     async takeCurrentScreenShot() {
-        const currentImage = path.join(__dirname, 'current.png');
+        const currentImage = path.join(__dirname,'Screenshot-VE', 'current.png');
         // Check if the old screenshot exists and delete it
         if (fs.existsSync(currentImage)) {
             fs.unlinkSync(currentImage); // Delete the old screenshot
@@ -39,7 +45,7 @@ exports.HelloWorldPage = class HelloWorld {
         return currentURL
     }
     async takeScreenShotForElementBtnSection(ScreenshotName) {
-        const screenshotPath = path.join(__dirname, `${ScreenshotName}.png`);
+        const screenshotPath = path.join(__dirname,'Screenshot-VE', `${ScreenshotName}.png`);
         if (fs.existsSync(screenshotPath)) {
             fs.unlinkSync(screenshotPath); // Delete the old screenshot
         }
