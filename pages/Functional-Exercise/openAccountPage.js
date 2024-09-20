@@ -16,9 +16,7 @@ exports.OpenAccountPage = class OpenAccount {
         await this.currencyDropDown.selectOption(currency);
         
     }
-    // async clickProcessBtn() {
-    //     await this.processBtn.click();
-    // }
+    
     async clickProcessBtn(messagesArray, expectedSuccessMsg) {
         const regex = /account Number :(\d+)/;
         let accountNumber;
@@ -27,12 +25,10 @@ exports.OpenAccountPage = class OpenAccount {
             messagesArray.push(confirmationMsg); // Push the dialog message to the array
             await dialog.dismiss().catch(() => { });
         });
-        // await this.processBtn.hover();
         await this.processBtn.click();
         for (const message of messagesArray) {
             if (message.includes(expectedSuccessMsg)) {
                 const match = message.match(regex);
-                // await this.page.pause();
                 if (match) {
                     accountNumber = match[1];
                     console.log(`Account number extracted: ${accountNumber}`);
